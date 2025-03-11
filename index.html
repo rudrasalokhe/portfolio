@@ -100,6 +100,32 @@
       h2:hover:after {
         transform: scaleX(1);
       }
+      
+      /* Skills section styles */
+      .skills-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        margin: 20px 0;
+      }
+      
+      .skill-pill {
+        background-color: #343a40;
+        color: white;
+        padding: 8px 15px;
+        border-radius: 20px;
+        font-size: 14px;
+        font-weight: 500;
+        display: inline-block;
+        transition: all 0.3s ease;
+      }
+      
+      .skill-pill:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        background-color: var(--accent-color);
+      }
     </style>
   </head>
   <body class="h-100 d-flex flex-column">
@@ -144,11 +170,13 @@
         </p>
         
         <h2 class="mt-5">Skills</h2>
-        <h4>Java</h4>
-        <h4>JavaScript</h4>
-        <h4>React</h4>
-        <h4>Node.js</h4>
-        <h4>Express.js</h4>
+        <div class="skills-container my-4">
+          <span class="skill-pill">Java</span>
+          <span class="skill-pill">JavaScript</span>
+          <span class="skill-pill">React</span>
+          <span class="skill-pill">Node.js</span>
+          <span class="skill-pill">Express.js</span>
+        </div>
         
         <h2 class="mt-5">Education</h2>
         <h4>Diploma in Computer Engineering</h4>
