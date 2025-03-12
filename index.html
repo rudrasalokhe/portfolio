@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en" class="h-100">
   <head>
@@ -17,13 +19,14 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Rudra Salokhe - Software Developer specializing in web and mobile applications">
-    <meta property="og:title" content="Rudra Salokhe - Software Developer" />
+    <meta property="og:title" content="Rudra Salokhe" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://rudrasalokhe.dev" />
-    <meta property="og:description" content="Computer Engineering student passionate about web and mobile development" />
-    <meta property="og:image" content="rudra.jpeg" />
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <meta property="og:description" content="Rudra Salokhe - Software Developer" />
+    <meta
+      property="og:image"
+      content="https://via.placeholder.com/512"
+    />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
@@ -32,343 +35,167 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
     />
-    <title>Rudra Salokhe | Software Developer</title>
+    <title>Rudra Salokhe</title>
     <style>
       :root {
         --bs-link-color: #1864ab;
         --accent-color: #4263eb;
-        --bg-color: #f8f9fa;
-        --text-color: #212529;
-        --section-bg: #ffffff;
-        --hover-transition: all 0.3s ease;
       }
       
-      body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background-color: var(--bg-color);
-        color: var(--text-color);
-        line-height: 1.6;
+      img {
+        border-radius: 12px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
       }
       
-      .profile-container {
-        max-width: 800px;
-        margin: 0 auto;
-      }
-      
-      .profile-image {
-        width: 200px;
-        height: 200px;
-        border-radius: 50%;
-        object-fit: cover;
-        border: 4px solid white;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-        transition: var(--hover-transition);
-      }
-      
-      .profile-image:hover {
-        transform: scale(1.05);
-        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-      }
-      
-      .name-title {
-        margin-top: 1.5rem;
-      }
-      
-      .name-title h1 {
-        font-weight: 700;
-        font-size: 2.5rem;
-        margin-bottom: 0.5rem;
-      }
-      
-      .name-title h2 {
-        font-weight: 500;
-        color: #495057;
-        position: relative;
-        display: inline-block;
-        padding-bottom: 0.5rem;
-        margin-bottom: 1rem;
-      }
-      
-      .name-title h2:after {
-        content: '';
-        position: absolute;
-        width: 60px;
-        height: 3px;
-        background-color: var(--accent-color);
-        bottom: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        transition: width 0.3s ease;
-      }
-      
-      .name-title h2:hover:after {
-        width: 100px;
+      img:hover {
+        transform: scale(1.02);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
       }
       
       .social {
         font-size: 1.5rem;
-        margin: 2rem 0;
       }
       
       .social a {
-        color: #495057;
-        margin: 0 0.8rem;
         text-decoration: none;
-        transition: var(--hover-transition);
-        display: inline-block;
+        transition: all 0.3s ease;
       }
       
       .social a:hover {
         color: var(--accent-color) !important;
-        transform: translateY(-5px);
+        transform: translateY(-3px);
       }
       
-      .section {
-        padding: 2rem;
-        background-color: var(--section-bg);
-        border-radius: 10px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        margin-bottom: 2rem;
-        transition: var(--hover-transition);
-      }
-      
-      .section:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-      }
-      
-      .section-title {
-        font-weight: 600;
-        color: var(--accent-color);
-        margin-bottom: 1.5rem;
-        position: relative;
+      a {
+        text-decoration: none;
+        transition: color 0.3s ease, transform 0.3s ease;
         display: inline-block;
       }
       
-      .section-title:after {
+      a:hover {
+        color: var(--accent-color);
+        transform: translateY(-1px);
+      }
+      
+      h1 {
+        font-weight: 700;
+      }
+      
+      h2 {
+        position: relative;
+        display: inline-block;
+        margin-bottom: 1rem;
+      }
+      
+      h2:after {
         content: '';
         position: absolute;
         width: 50%;
-        height: 3px;
-        background-color: var(--accent-color);
-        bottom: -8px;
-        left: 0;
+        height: 2px;
+        background-color: var(--bs-link-color);
+        bottom: -5px;
+        left: 25%;
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
       }
       
+      h2:hover:after {
+        transform: scaleX(1);
+      }
+      
+      /* Skills section styles */
       .skills-container {
         display: flex;
         flex-wrap: wrap;
-        gap: 12px;
         justify-content: center;
+        gap: 10px;
+        margin: 20px 0;
       }
       
       .skill-pill {
         background-color: #343a40;
         color: white;
-        padding: 8px 18px;
-        border-radius: 25px;
-        font-size: 0.9rem;
+        padding: 8px 15px;
+        border-radius: 20px;
+        font-size: 14px;
         font-weight: 500;
         display: inline-block;
-        transition: var(--hover-transition);
+        transition: all 0.3s ease;
       }
       
       .skill-pill:hover {
-        transform: translateY(-3px) scale(1.05);
-        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        transform: translateY(-3px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         background-color: var(--accent-color);
-      }
-      
-      .project-card {
-        border: 1px solid #e9ecef;
-        border-radius: 10px;
-        padding: 1.5rem;
-        margin-bottom: 1.5rem;
-        transition: var(--hover-transition);
-        background-color: white;
-      }
-      
-      .project-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        border-color: var(--accent-color);
-      }
-      
-      .project-card h4 {
-        margin-bottom: 1rem;
-      }
-      
-      .project-card a {
-        color: var(--accent-color);
-        font-weight: 500;
-        transition: var(--hover-transition);
-      }
-      
-      .project-card a:hover {
-        text-decoration: underline;
-      }
-      
-      .project-card p {
-        color: #6c757d;
-        margin-bottom: 1rem;
-      }
-      
-      .education-item {
-        margin-bottom: 1.5rem;
-      }
-      
-      .education-item h3 {
-        font-weight: 600;
-        font-size: 1.2rem;
-        margin-bottom: 0.5rem;
-      }
-      
-      .education-item h4 {
-        font-weight: 500;
-        font-size: 1rem;
-        color: #495057;
-        margin-bottom: 0.5rem;
-      }
-      
-      .education-date {
-        color: #6c757d;
-        font-size: 0.9rem;
-      }
-      
-      footer {
-        background-color: #343a40;
-        color: white;
-        padding: 1.5rem 0;
-      }
-      
-      footer a {
-        color: #ced4da;
-        transition: var(--hover-transition);
-      }
-      
-      footer a:hover {
-        color: white;
-      }
-      
-      @media (max-width: 768px) {
-        .profile-image {
-          width: 150px;
-          height: 150px;
-        }
-        
-        .name-title h1 {
-          font-size: 2rem;
-        }
-        
-        .section {
-          padding: 1.5rem;
-        }
       }
     </style>
   </head>
   <body class="h-100 d-flex flex-column">
-    <main class="flex-shrink-0 mb-5 p-3">
-      <div class="container profile-container">
-        <div class="text-center">
-          <img
-            class="profile-image my-4"
-            alt="Rudra Salokhe Profile Picture"
-            loading="lazy"
-            width="200"
-            height="200"
-            src="rudra.jpeg"
-          />
-          
-          <div class="name-title">
-            <h1>Rudra Salokhe</h1>
-            <h2>Software Developer</h2>
-          </div>
-          
-          <div class="social">
-            <a href="https://github.com/rudrasalokhe" title="GitHub">
-              <i class="bi bi-github"></i>
-            </a>
-            <a href="https://twitter.com/rudrasalokhe" title="Twitter">
-              <i class="bi bi-twitter"></i>
-            </a>
-            <a href="https://www.linkedin.com/in/rudra-salokhe-12196b250/" title="LinkedIn">
-              <i class="bi bi-linkedin"></i>
-            </a>
-            <a href="https://instagram.com/rudrasalokhe" title="Instagram">
-              <i class="bi bi-instagram"></i>
-            </a>
-            <a href="https://facebook.com/rudrasalokhe" title="Facebook">
-              <i class="bi bi-facebook"></i>
-            </a>
-          </div>
+    <main class="flex-shrink-0 mb-5">
+      <div class="container text-center">
+        <img
+          class="my-5"
+          alt="Rudra Salokhe Profile Picture"
+          loading="lazy"
+          width="256"
+          height="256"
+          decoding="async"
+          data-nimg="1"
+          src="rudra.jpeg"
+          style="color: transparent"
+        />
+        
+        <h1>Rudra Salokhe</h1>
+        <h2>Software Developer</h2>
+        
+        <div class="social my-5">
+          <a class="mx-2" href="https://github.com/rudrasalokhe">
+            <i class="bi bi-github"></i>
+          </a>
+          <a class="mx-2" href="https://twitter.com/rudrasalokhe">
+            <i class="bi bi-twitter"></i>
+          </a>
+          <a class="mx-2" href="https://www.linkedin.com/in/rudra-salokhe-12196b250/">
+            <i class="bi bi-linkedin"></i>
+          </a>
+          <a class="mx-2" href="https://instagram.com/rudrasalokhe">
+            <i class="bi bi-instagram"></i>
+          </a>
+          <a class="mx-2" href="https://facebook.com/rudrasalokhe">
+            <i class="bi bi-facebook"></i>
+          </a>
         </div>
         
-        <section class="section">
-          <h2 class="section-title">About Me</h2>
-          <p class="lead">
-            I am a Computer Engineering student at Vidyalankar Polytechnic with a strong interest in mobile and web application development. Currently, I'm focusing on expanding my knowledge of modern web technologies and building practical projects to enhance my skills.
-          </p>
-        </section>
+        <h2>Currently</h2>
+        <p class="lead">
+          I am a Computer Engineering student at Vidyalankar Polytechnic with a strong interest in mobile and web apps.<br> Currently, I'm focusing on learning new web technologies and master them.
+        </p>
         
-        <section class="section">
-          <h2 class="section-title">Skills</h2>
-          <div class="skills-container">
-            <span class="skill-pill">Java</span>
-            <span class="skill-pill">JavaScript</span>
-            <span class="skill-pill">HTML5</span>
-            <span class="skill-pill">CSS3</span>
-            <span class="skill-pill">React</span>
-            <span class="skill-pill">Node.js</span>
-            <span class="skill-pill">Express.js</span>
-            <span class="skill-pill">MongoDB</span>
-            <span class="skill-pill">Git</span>
-            <span class="skill-pill">Responsive Design</span>
-          </div>
-        </section>
+        <h2 class="mt-5">Skills</h2>
+        <div class="skills-container my-4">
+          <span class="skill-pill">Java</span>
+          <span class="skill-pill">JavaScript</span>
+          <span class="skill-pill">React</span>
+          <span class="skill-pill">Node.js</span>
+          <span class="skill-pill">Express.js</span>
         
-        <section class="section">
-          <h2 class="section-title">Education</h2>
-          <div class="education-item">
-            <h3>Vidyalankar Polytechnic</h3>
-            <h4>Diploma in Computer Engineering</h4>
-            <p class="education-date">2022 - 2025</p>
-          </div>
-        </section>
+          <span class="skill-pill">MongoDB</span>
+        </div>
         
-        <section class="section">
-          <h2 class="section-title">Projects</h2>
-          
-          <div class="project-card">
-            <h4>Hotel Management System</h4>
-            <p>A comprehensive system for managing hotel operations including reservations, room service, and customer management.</p>
-            <a href="https://github.com/rudrasalokhe/Hotel-Management-System" target="_blank">
-              <i class="bi bi-github"></i> View on GitHub
-            </a>
-          </div>
-          
-          <div class="project-card">
-            <h4>Weather Application</h4>
-            <p>A responsive web application that provides real-time weather information for locations around the world.</p>
-            <a href="https://webtraco.netlify.app/" target="_blank">
-              <i class="bi bi-cloud-sun"></i> View Live Demo
-            </a>
-          </div>
-        </section>
-        
-        <section class="section">
-          <h2 class="section-title">Contact</h2>
-          <p>Feel free to reach out to me through any of the social media platforms listed above or send me an email at:</p>
-          <p><a href="mailto:contact@rudrasalokhe.dev">contact@rudrasalokhe.dev</a></p>
-        </section>
+        <h2 class="mt-5">Education</h2>
+        <h3>Vidyalankar Polytechnic</h3>
+        <h4>Diploma in Computer Engineering</h4>
+        <h6 style="color="grey">2022-2025</h6>
+        <h2 class="mt-5">Projects</h2>
+        <h4><a href="https://github.com/rudrasalokhe/Hotel-Management-System">Hotel-Management-System</a></h4>
+        <h4><a href="https://webtraco.netlify.app/">Weather Application</a></h4>
       </div>
     </main>
-    
-    <footer class="mt-auto text-center">
-      <div class="container">
-        <p>© <span id="date"></span> - Rudra Salokhe | All Rights Reserved</p>
-      </div>
+    <footer class="mt-auto py-4 bg-light border-top text-center">
+      <ul class="list-inline mb-0">
+        <li class="list-inline-item">© <span id="date"></span> — rudrasalokhe.dev</li>
+      </ul>
     </footer>
-    
     <script>
       (function () {
         document.getElementById("date").innerHTML = new Date().getFullYear();
