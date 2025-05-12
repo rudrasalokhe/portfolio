@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="h-100">
+<html lang="en">
   <head>
     <script
       async
@@ -36,101 +36,329 @@
     <title>Rudra|Portfolio</title>
     <style>
       :root {
-        --bs-link-color: #1864ab;
+        --text: #1a1a1a;
+        --background: #ffffff;
+        --accent: #0066ff;
+        --secondary: #666666;
+        --border: #e5e5e5;
       }
-      img {
-        border-radius: 12px;
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
       }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        line-height: 1.6;
+        color: var(--text);
+        background: var(--background);
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2rem;
+      }
+
+      .header {
+        margin-bottom: 4rem;
+      }
+
+      .profile-img {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        margin-bottom: 1.5rem;
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+      }
+
+      .subtitle {
+        font-size: 1.2rem;
+        color: var(--secondary);
+        margin-bottom: 1.5rem;
+      }
+
       .social {
-        font-size: 1.5rem;
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 2rem;
       }
-      a {
+
+      .social a {
+        color: var(--text);
+        font-size: 1.5rem;
+        transition: color 0.2s ease;
+      }
+
+      .social a:hover {
+        color: var(--accent);
+      }
+
+      .bio {
+        font-size: 1.1rem;
+        color: var(--secondary);
+        margin-bottom: 3rem;
+      }
+
+      .section {
+        margin-bottom: 4rem;
+      }
+
+      .section-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 2rem;
+        color: var(--text);
+      }
+
+      .project {
+        margin-bottom: 3rem;
+        padding-bottom: 2rem;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .project:last-child {
+        border-bottom: none;
+      }
+
+      .project-title {
+        font-size: 1.3rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: var(--text);
+      }
+
+      .project-title a {
+        color: inherit;
         text-decoration: none;
+      }
+
+      .project-title a:hover {
+        color: var(--accent);
+      }
+
+      .project-description {
+        color: var(--secondary);
+        margin-bottom: 1rem;
+      }
+
+      .project-links {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+
+      .project-links a {
+        color: var(--secondary);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.9rem;
+      }
+
+      .project-links a:hover {
+        color: var(--accent);
+      }
+
+      .experience-item {
+        margin-bottom: 2rem;
+      }
+
+      .experience-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+      }
+
+      .experience-company {
+        color: var(--secondary);
+        margin-bottom: 0.5rem;
+      }
+
+      .experience-date {
+        color: var(--secondary);
+        font-size: 0.9rem;
+      }
+
+      .skills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      .skill {
+        background: #f5f5f5;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        color: var(--secondary);
+      }
+
+      footer {
+        margin-top: 4rem;
+        padding-top: 2rem;
+        border-top: 1px solid var(--border);
+        color: var(--secondary);
+        font-size: 0.9rem;
+      }
+
+      @media (max-width: 768px) {
+        body {
+          padding: 1rem;
+        }
+
+        h1 {
+          font-size: 2rem;
+        }
+
+        .section-title {
+          font-size: 1.3rem;
+        }
       }
     </style>
   </head>
-  <body class="h-100 d-flex flex-column">
-    <main class="flex-shrink-0 mb-5">
-      <div class="container text-center">
-        <img
-          class="my-5"
-          alt="Rudra Salokhe Profile Picture"
-          loading="lazy"
-          width="256"
-          height="256"
-          decoding="async"
-          data-nimg="1"
-          src="rudra.jpeg"
-          style="color: transparent"
-        />
+  <body>
+    <header class="header">
+      <img
+        class="profile-img"
+        alt="Rudra Salokhe Profile Picture"
+        loading="lazy"
+        src="rudra.jpeg"
+      />
 
-        <h1>Rudra Salokhe</h1>
-        <h3 style="color: grey;">Backend Developer</h3>
+      <h1>Rudra Salokhe</h1>
+      <p class="subtitle">Backend Developer</p>
 
-        <div class="social my-5">
-          <a class="mx-2" href="https://github.com/rudrasalokhe" target="_blank"
-            ><i class="bi bi-github"></i
-          ></a>
-          <a class="mx-2" href="https://x.com/rs2006_05" target="_blank"
-            ><i class="bi bi-twitter"></i
-          ></a>
-          <a class="mx-2" href="https://www.linkedin.com/in/rudra-salokhe-12196b250/" target="_blank"
-            ><i class="bi bi-linkedin"></i
-          ></a>
-          <a class="mx-2" href="https://instagram.com/rudrasalokhe" target="_blank"
-            ><i class="bi bi-instagram"></i
-          ></a>
+      <div class="social">
+        <a href="https://github.com/rudrasalokhe" target="_blank"><i class="bi bi-github"></i></a>
+        <a href="https://x.com/rs2006_05" target="_blank"><i class="bi bi-twitter"></i></a>
+        <a href="https://www.linkedin.com/in/rudra-salokhe-12196b250/" target="_blank"><i class="bi bi-linkedin"></i></a>
+        <a href="https://instagram.com/rudrasalokhe" target="_blank"><i class="bi bi-instagram"></i></a>
+      </div>
+
+      <p class="bio">
+        I am a Computer Engineering student at Vidyalankar Polytechnic with a strong interest in mobile and web apps. I'm aspiring to become a full stack Engineer.
+      </p>
+    </header>
+
+    <main>
+      <section class="section">
+        <h2 class="section-title">Projects</h2>
+        
+        <div class="project">
+          <h3 class="project-title">
+            <a href="https://github.com/rudrasalokhe/Hotel-Management-System" target="_blank">Hotel Management System</a>
+          </h3>
+          <p class="project-description">
+            A comprehensive hotel management solution built with modern technologies.
+          </p>
+          <div class="project-links">
+            <a href="https://github.com/rudrasalokhe/Hotel-Management-System" target="_blank">
+              <i class="bi bi-github"></i> GitHub
+            </a>
+          </div>
         </div>
 
-        <h2>Currently</h2>
-        <p class="lead">
-          I am a Computer Engineering student at Vidyalankar Polytechnic with a strong interest in mobile and web apps.<br> Im aspiring to become a full stack Engineer.
-        </p>
-        <h2 class="mt-5">Experience</h2>
-        <h4>Web Developer</h4>
-        <h4 style="color: grey;">CodeInfinity Software Solutions · Internship</h4>
-        <h6 style="color: grey;">Jun 2024 - Aug 2024 · 3 mos</h6>
-        <h2 class="mt-5">Skills</h2>
-        <h4>Java</h4>
-        <h4>JavaScript</h4>
-        <h4>React</h4>
-        <h4>Node.js</h4>
-        <h4>Express.js</h4>
+        <div class="project">
+          <h3 class="project-title">
+            <a href="https://webtraco.netlify.app/" target="_blank">Weather Application</a>
+          </h3>
+          <p class="project-description">
+            Real-time weather tracking application with beautiful UI.
+          </p>
+          <div class="project-links">
+            <a href="https://webtraco.netlify.app/" target="_blank">
+              <i class="bi bi-globe"></i> Live Demo
+            </a>
+          </div>
+        </div>
 
-        <h2 class="mt-5">Education</h2>
-        <h4>Diploma in Computer Engineeing</h4>
-        <h4>Vidyalankar Polytechnic</h4>
-        <h6 style="color: grey;">2022-2025</h6>
+        <div class="project">
+          <h3 class="project-title">
+            <a href="https://ework-fzceigc5c-rudrasalokhes-projects.vercel.app/" target="_blank">Todo Application</a>
+          </h3>
+          <p class="project-description">
+            Efficient task management system with modern features.
+          </p>
+          <div class="project-links">
+            <a href="https://ework-fzceigc5c-rudrasalokhes-projects.vercel.app/" target="_blank">
+              <i class="bi bi-globe"></i> Live Demo
+            </a>
+          </div>
+        </div>
 
-        <h2 class="mt-5">Projects</h2>
-        <h4><a href="https://github.com/rudrasalokhe/Hotel-Management-System" target="_blank">Hotel-Management-System</a></h4>
-        <h4><a href="https://webtraco.netlify.app/" target="_blank">Weather Application</a></h4>
-        <h4><a href="https://ework-fzceigc5c-rudrasalokhes-projects.vercel.app/" target="_blank">Todo Application</a></h4>
-        <h4><a href="https://github.com/rudrasalokhe/percentcal-app" target="_blank">Marks Calculator Android App</a></h4>
-        <h4><a href="https://trainify-bot.vercel.app/" target="_blank">AI ChatBot Application/a></h4> 
-        <h2 class="mt-5">Certifications</h2>
-        <h4>Python for Data Science, AI & Development</h4>
-        <h6>IBM</h6>
-        <h6 style="color: grey;">Issued April 2023</h6>
-        <h6 style="color: grey;">Credential ID ADEAKG2AFHXS</h6>
-        <h2 class="mt-5">Current Goal</h2>
-        <h5 style="color: grey;">Learning MERN and contribute to open source projects hence furthur.</h5>
-      </div>
+        <div class="project">
+          <h3 class="project-title">
+            <a href="https://github.com/rudrasalokhe/percentcal-app" target="_blank">Marks Calculator Android App</a>
+          </h3>
+          <p class="project-description">
+            Android application for calculating and managing academic marks.
+          </p>
+          <div class="project-links">
+            <a href="https://github.com/rudrasalokhe/percentcal-app" target="_blank">
+              <i class="bi bi-github"></i> GitHub
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Experience</h2>
+        <div class="experience-item">
+          <h3 class="experience-title">Web Developer</h3>
+          <p class="experience-company">CodeInfinity Software Solutions · Internship</p>
+          <p class="experience-date">Jun 2024 - Aug 2024 · 3 mos</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Skills</h2>
+        <div class="skills">
+          <span class="skill">Java</span>
+          <span class="skill">JavaScript</span>
+          <span class="skill">React</span>
+          <span class="skill">Node.js</span>
+          <span class="skill">Express.js</span>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Education</h2>
+        <div class="experience-item">
+          <h3 class="experience-title">Diploma in Computer Engineering</h3>
+          <p class="experience-company">Vidyalankar Polytechnic</p>
+          <p class="experience-date">2022-2025</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Certifications</h2>
+        <div class="experience-item">
+          <h3 class="experience-title">Python for Data Science, AI & Development</h3>
+          <p class="experience-company">IBM</p>
+          <p class="experience-date">Issued April 2023</p>
+          <p class="experience-date">Credential ID ADEAKG2AFHXS</p>
+        </div>
+      </section>
     </main>
-    <footer class="mt-auto py-4 bg-light border-top text-center">
-      <ul class="list-inline mb-0">
-        <li class="list-inline-item">© <span id="date"></span> <a href="https://rudrasalokhee.vercel.app/">—rudrasalokhee.vercel.app</a></li>
-      </ul>
+
+    <footer>
+      <p>© <span id="date"></span> <a href="https://rudrasalokhee.vercel.app/">—rudrasalokhee.vercel.app</a></p>
     </footer>
+
     <script>
       (function () {
         document.getElementById("date").innerHTML = new Date().getFullYear();
       })();
 
-
-        document.addEventListener("contextmenu", function (event) {
-            event.preventDefault();
-        });
+      document.addEventListener("contextmenu", function (event) {
+        event.preventDefault();
+      });
     </script>
   </body>
 </html>
