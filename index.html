@@ -19,7 +19,7 @@
     <meta property="og:title" content="Rudra Salokhe" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://rudrasalokhe.dev" />
-    <meta property="og:description" content="Rudra Salokhe - Software Developer" />
+    <meta property="og:description" content="Rudra Salokhe - Backend Developer" />
     <meta
       property="og:image"
       content="https://via.placeholder.com/512"
@@ -33,7 +33,7 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
     />
     <link rel="icon" href="icon.jpeg">
-    <title>Rudra|Portfolio</title>
+    <title>Rudra Salokhe | Portfolio</title>
     <style>
       :root {
         --text: #1a1a1a;
@@ -41,6 +41,8 @@
         --accent: #0066ff;
         --secondary: #666666;
         --border: #e5e5e5;
+        --light-accent: #e6f0ff;
+        --transition: all 0.3s ease;
       }
 
       * {
@@ -56,69 +58,110 @@
         background: var(--background);
         max-width: 800px;
         margin: 0 auto;
-        padding: 2rem;
+        padding: 3rem 2rem;
       }
 
       .header {
-        margin-bottom: 4rem;
+        margin-bottom: 5rem;
+        text-align: center;
+      }
+
+      .profile-container {
+        position: relative;
+        width: 150px;
+        height: 150px;
+        margin: 0 auto 2rem;
       }
 
       .profile-img {
-        width: 120px;
-        height: 120px;
+        width: 100%;
+        height: 100%;
         border-radius: 50%;
-        margin-bottom: 1.5rem;
+        object-fit: cover;
+        border: 3px solid var(--background);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        transition: var(--transition);
+      }
+
+      .profile-container:hover .profile-img {
+        transform: scale(1.05);
       }
 
       h1 {
-        font-size: 2.5rem;
+        font-size: 2.8rem;
         font-weight: 700;
-        margin-bottom: 1rem;
+        margin-bottom: 0.5rem;
+        letter-spacing: -0.5px;
       }
 
       .subtitle {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
         color: var(--secondary);
         margin-bottom: 1.5rem;
+        letter-spacing: 0.5px;
       }
 
       .social {
         display: flex;
-        gap: 1rem;
-        margin-bottom: 2rem;
+        justify-content: center;
+        gap: 1.5rem;
+        margin-bottom: 2.5rem;
       }
 
       .social a {
         color: var(--text);
-        font-size: 1.5rem;
-        transition: color 0.2s ease;
+        font-size: 1.6rem;
+        transition: var(--transition);
       }
 
       .social a:hover {
         color: var(--accent);
+        transform: translateY(-3px);
       }
 
       .bio {
-        font-size: 1.1rem;
+        font-size: 1.2rem;
         color: var(--secondary);
         margin-bottom: 3rem;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.8;
       }
 
       .section {
-        margin-bottom: 4rem;
+        margin-bottom: 5rem;
       }
 
       .section-title {
-        font-size: 1.5rem;
+        font-size: 1.8rem;
         font-weight: 600;
-        margin-bottom: 2rem;
+        margin-bottom: 2.5rem;
         color: var(--text);
+        position: relative;
+        display: inline-block;
+      }
+
+      .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        width: 40px;
+        height: 4px;
+        background-color: var(--accent);
+        border-radius: 2px;
       }
 
       .project {
-        margin-bottom: 3rem;
-        padding-bottom: 2rem;
+        margin-bottom: 3.5rem;
+        padding-bottom: 2.5rem;
         border-bottom: 1px solid var(--border);
+        transition: var(--transition);
+      }
+
+      .project:hover {
+        transform: translateY(-5px);
       }
 
       .project:last-child {
@@ -126,15 +169,16 @@
       }
 
       .project-title {
-        font-size: 1.3rem;
+        font-size: 1.5rem;
         font-weight: 600;
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.8rem;
         color: var(--text);
       }
 
       .project-title a {
         color: inherit;
         text-decoration: none;
+        transition: var(--transition);
       }
 
       .project-title a:hover {
@@ -143,13 +187,15 @@
 
       .project-description {
         color: var(--secondary);
-        margin-bottom: 1rem;
+        margin-bottom: 1.5rem;
+        font-size: 1.1rem;
+        line-height: 1.7;
       }
 
       .project-links {
         display: flex;
-        gap: 1rem;
-        margin-top: 1rem;
+        gap: 1.5rem;
+        margin-top: 1.5rem;
       }
 
       .project-links a {
@@ -158,31 +204,49 @@
         display: flex;
         align-items: center;
         gap: 0.5rem;
-        font-size: 0.9rem;
+        font-size: 1rem;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        background-color: var(--light-accent);
+        transition: var(--transition);
       }
 
       .project-links a:hover {
-        color: var(--accent);
+        color: white;
+        background-color: var(--accent);
       }
 
       .experience-item {
-        margin-bottom: 2rem;
+        margin-bottom: 2.5rem;
+        padding: 1.5rem;
+        border-radius: 8px;
+        background-color: #fcfcfc;
+        transition: var(--transition);
+        border-left: 3px solid transparent;
+      }
+
+      .experience-item:hover {
+        border-left: 3px solid var(--accent);
+        background-color: #f9f9f9;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
       }
 
       .experience-title {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
         font-weight: 600;
         margin-bottom: 0.5rem;
       }
 
       .experience-company {
         color: var(--secondary);
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.7rem;
+        font-size: 1.1rem;
       }
 
       .experience-date {
         color: var(--secondary);
-        font-size: 0.9rem;
+        font-size: 0.95rem;
+        opacity: 0.8;
       }
 
       .skills {
@@ -192,62 +256,138 @@
       }
 
       .skill {
-        background: #f5f5f5;
-        padding: 0.5rem 1rem;
+        background: var(--light-accent);
+        padding: 0.7rem 1.2rem;
         border-radius: 20px;
-        font-size: 0.9rem;
-        color: var(--secondary);
+        font-size: 1rem;
+        color: var(--accent);
+        font-weight: 500;
+        transition: var(--transition);
+      }
+
+      .skill:hover {
+        background: var(--accent);
+        color: white;
+        transform: translateY(-3px);
       }
 
       footer {
-        margin-top: 4rem;
+        margin-top: 5rem;
         padding-top: 2rem;
         border-top: 1px solid var(--border);
         color: var(--secondary);
-        font-size: 0.9rem;
+        font-size: 1rem;
+        text-align: center;
+      }
+
+      footer a {
+        color: var(--accent);
+        text-decoration: none;
+        transition: var(--transition);
+      }
+
+      footer a:hover {
+        text-decoration: underline;
+      }
+
+      .scroll-reveal {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.6s ease;
+      }
+
+      .scroll-reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .dark-mode-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: var(--background);
+        border: 1px solid var(--border);
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        z-index: 100;
+        transition: var(--transition);
+      }
+
+      .dark-mode-toggle:hover {
+        transform: scale(1.1);
+      }
+
+      body.dark-mode {
+        --text: #f0f0f0;
+        --background: #121212;
+        --accent: #4d8aff;
+        --secondary: #a0a0a0;
+        --border: #333333;
+        --light-accent: #1a2536;
       }
 
       @media (max-width: 768px) {
         body {
-          padding: 1rem;
+          padding: 2rem 1.5rem;
         }
 
         h1 {
-          font-size: 2rem;
+          font-size: 2.2rem;
         }
 
         .section-title {
-          font-size: 1.3rem;
+          font-size: 1.5rem;
+        }
+
+        .experience-item {
+          padding: 1.2rem;
+        }
+
+        .skill {
+          padding: 0.6rem 1rem;
+          font-size: 0.9rem;
         }
       }
     </style>
   </head>
   <body>
-    <header class="header">
-      <img
-        class="profile-img"
-        alt="Rudra Salokhe Profile Picture"
-        loading="lazy"
-        src="rudra.jpeg"
-      />
+    <div class="dark-mode-toggle">
+      <i class="bi bi-moon"></i>
+    </div>
+
+    <header class="header scroll-reveal">
+      <div class="profile-container">
+        <img
+          class="profile-img"
+          alt="Rudra Salokhe Profile Picture"
+          loading="lazy"
+          src="rudra.jpeg"
+        />
+      </div>
 
       <h1>Rudra Salokhe</h1>
-      <p class="subtitle">Backend Developer</p>
+      <p class="subtitle">Backend Developer & Computer Engineering Student</p>
 
       <div class="social">
-        <a href="https://github.com/rudrasalokhe" target="_blank"><i class="bi bi-github"></i></a>
-        <a href="https://x.com/rs2006_05" target="_blank"><i class="bi bi-twitter"></i></a>
-        <a href="https://www.linkedin.com/in/rudra-salokhe-12196b250/" target="_blank"><i class="bi bi-linkedin"></i></a>
-        <a href="https://instagram.com/rudrasalokhe" target="_blank"><i class="bi bi-instagram"></i></a>
+        <a href="https://github.com/rudrasalokhe" target="_blank" aria-label="GitHub"><i class="bi bi-github"></i></a>
+        <a href="https://x.com/rs2006_05" target="_blank" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+        <a href="https://www.linkedin.com/in/rudra-salokhe-12196b250/" target="_blank" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+        <a href="https://instagram.com/rudrasalokhe" target="_blank" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
       </div>
 
       <p class="bio">
-        I am a Computer Engineering student at Vidyalankar Polytechnic with a strong interest in mobile and web apps. I'm aspiring to become a full stack Engineer.
+        I am a Computer Engineering student at Vidyalankar Polytechnic with a strong passion for building robust backend systems and modern web applications. Currently focused on becoming a well-rounded Full Stack Engineer with expertise in both frontend and backend technologies.
       </p>
     </header>
 
     <main>
-      <section class="section">
+      <section class="section scroll-reveal">
         <h2 class="section-title">Projects</h2>
         
         <div class="project">
@@ -255,11 +395,11 @@
             <a href="https://github.com/rudrasalokhe/Hotel-Management-System" target="_blank">Hotel Management System</a>
           </h3>
           <p class="project-description">
-            A comprehensive hotel management solution built with modern technologies.
+            A comprehensive hotel management solution built with modern technologies. Features include room booking management, staff scheduling, customer profiles, and financial reporting capabilities.
           </p>
           <div class="project-links">
             <a href="https://github.com/rudrasalokhe/Hotel-Management-System" target="_blank">
-              <i class="bi bi-github"></i> GitHub
+              <i class="bi bi-github"></i> GitHub Repository
             </a>
           </div>
         </div>
@@ -269,7 +409,7 @@
             <a href="https://webtraco.netlify.app/" target="_blank">Weather Application</a>
           </h3>
           <p class="project-description">
-            Real-time weather tracking application with beautiful UI.
+            Real-time weather tracking application with a beautiful and intuitive UI. Provides current conditions, hourly and 7-day forecasts, using modern JavaScript and weather APIs.
           </p>
           <div class="project-links">
             <a href="https://webtraco.netlify.app/" target="_blank">
@@ -283,7 +423,7 @@
             <a href="https://ework-fzceigc5c-rudrasalokhes-projects.vercel.app/" target="_blank">Todo Application</a>
           </h3>
           <p class="project-description">
-            Efficient task management system with modern features.
+            Efficient task management system with modern features including task categorization, priority levels, deadline tracking, and notification reminders built with React.
           </p>
           <div class="project-links">
             <a href="https://ework-fzceigc5c-rudrasalokhes-projects.vercel.app/" target="_blank">
@@ -292,32 +432,37 @@
           </div>
         </div>
 
-              <div class="project">
-        <h3 class="project-title">
-          <a href="https://trainify-bot.vercel.app/" target="_blank">Trainify Bot - Document Translator</a>
-        </h3>
-        <p class="project-description">
-          Trainify Bot is an AI-powered tool that takes input documents and translates them into multiple languages, providing the output in a downloadable PDF format.
-        </p>
-        <div class="project-links">
-          <a href="https://github.com/rudrasalokhe/Trainify-bot" target="_blank">
-            <i class="bi bi-github"></i> GitHub
-          </a>
+        <div class="project">
+          <h3 class="project-title">
+            <a href="https://trainify-bot.vercel.app/" target="_blank">Trainify Bot - Document Translator</a>
+          </h3>
+          <p class="project-description">
+            Trainify Bot is an AI-powered tool that takes input documents and translates them into multiple languages, providing the output in a downloadable PDF format. Built using modern NLP techniques and language processing APIs.
+          </p>
+          <div class="project-links">
+            <a href="https://github.com/rudrasalokhe/Trainify-bot" target="_blank">
+              <i class="bi bi-github"></i> GitHub Repository
+            </a>
+            <a href="https://trainify-bot.vercel.app/" target="_blank">
+              <i class="bi bi-globe"></i> Live Demo
+            </a>
+          </div>
         </div>
-      </div>
-
       </section>
 
-      <section class="section">
+      <section class="section scroll-reveal">
         <h2 class="section-title">Experience</h2>
         <div class="experience-item">
           <h3 class="experience-title">Web Developer</h3>
           <p class="experience-company">CodeInfinity Software Solutions · Internship</p>
-          <p class="experience-date">Jun 2024 - Aug 2024 · 3 mos</p>
+          <p class="experience-date">Jun 2024 - Aug 2024 · 3 months</p>
+          <p class="project-description">
+            Worked on developing and maintaining web applications using JavaScript and modern frameworks. Collaborated with senior developers to implement new features and optimize existing codebases.
+          </p>
         </div>
       </section>
 
-      <section class="section">
+      <section class="section scroll-reveal">
         <h2 class="section-title">Skills</h2>
         <div class="skills">
           <span class="skill">Java</span>
@@ -325,40 +470,120 @@
           <span class="skill">React</span>
           <span class="skill">Node.js</span>
           <span class="skill">Express.js</span>
+          <span class="skill">HTML5</span>
+          <span class="skill">CSS3</span>
+          <span class="skill">Git</span>
+          <span class="skill">MongoDB</span>
+          <span class="skill">RESTful APIs</span>
+          <span class="skill">Python</span>
         </div>
       </section>
 
-      <section class="section">
+      <section class="section scroll-reveal">
         <h2 class="section-title">Education</h2>
         <div class="experience-item">
           <h3 class="experience-title">Diploma in Computer Engineering</h3>
           <p class="experience-company">Vidyalankar Polytechnic</p>
           <p class="experience-date">2022-2025</p>
+          <p class="project-description">
+            Pursuing a comprehensive diploma with focus on software development, database management, and computer networking fundamentals.
+          </p>
         </div>
       </section>
 
-      <section class="section">
+      <section class="section scroll-reveal">
         <h2 class="section-title">Certifications</h2>
         <div class="experience-item">
           <h3 class="experience-title">Python for Data Science, AI & Development</h3>
           <p class="experience-company">IBM</p>
           <p class="experience-date">Issued April 2023</p>
           <p class="experience-date">Credential ID ADEAKG2AFHXS</p>
+          <p class="project-description">
+            Comprehensive certification covering Python fundamentals, data manipulation, visualization techniques, and introduction to machine learning concepts.
+          </p>
         </div>
       </section>
     </main>
 
-    <footer>
-      <p>© <span id="date"></span> <a href="https://rudrasalokhee.vercel.app/">—rudrasalokhee.vercel.app</a></p>
+    <footer class="scroll-reveal">
+      <p>© <span id="date"></span> Rudra Salokhe | <a href="https://rudrasalokhee.vercel.app/">rudrasalokhee.vercel.app</a></p>
     </footer>
 
     <script>
+      // Set current year
       (function () {
         document.getElementById("date").innerHTML = new Date().getFullYear();
       })();
 
+      // Prevent right-click
       document.addEventListener("contextmenu", function (event) {
         event.preventDefault();
+      });
+
+      // Dark mode toggle
+      const darkModeToggle = document.querySelector('.dark-mode-toggle');
+      const toggleIcon = darkModeToggle.querySelector('i');
+      
+      // Check for saved theme preference
+      if (localStorage.getItem('darkMode') === 'enabled') {
+        document.body.classList.add('dark-mode');
+        toggleIcon.classList.remove('bi-moon');
+        toggleIcon.classList.add('bi-sun');
+      }
+      
+      darkModeToggle.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+        
+        if (document.body.classList.contains('dark-mode')) {
+          localStorage.setItem('darkMode', 'enabled');
+          toggleIcon.classList.remove('bi-moon');
+          toggleIcon.classList.add('bi-sun');
+        } else {
+          localStorage.setItem('darkMode', null);
+          toggleIcon.classList.remove('bi-sun');
+          toggleIcon.classList.add('bi-moon');
+        }
+      });
+
+      // Scroll reveal animation
+      const scrollElements = document.querySelectorAll(".scroll-reveal");
+
+      const elementInView = (el, percentageScroll = 100) => {
+        const elementTop = el.getBoundingClientRect().top;
+        const elementHeight = el.getBoundingClientRect().height;
+        
+        return (
+          elementTop <= 
+          ((window.innerHeight || document.documentElement.clientHeight) * (percentageScroll/100))
+        );
+      };
+
+      const displayScrollElement = (element) => {
+        element.classList.add("active");
+      };
+
+      const hideScrollElement = (element) => {
+        element.classList.remove("active");
+      };
+
+      const handleScrollAnimation = () => {
+        scrollElements.forEach((el) => {
+          if (elementInView(el, 90)) {
+            displayScrollElement(el);
+          } else {
+            hideScrollElement(el);
+          }
+        });
+      };
+
+      // Initialize on load
+      window.addEventListener("load", () => {
+        handleScrollAnimation();
+      });
+      
+      // Update on scroll
+      window.addEventListener("scroll", () => {
+        handleScrollAnimation();
       });
     </script>
   </body>
