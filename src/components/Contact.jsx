@@ -1,114 +1,109 @@
+import React, { useState, useEffect } from 'react';
+
 const Contact = () => {
+  const [isVisible, setIsVisible] = useState(false);
+
   const contacts = [
     {
       name: "Email",
       answer: "rudrasalokhe100@gmail.com",
-      link: "mailto:rudrasalokhe100@gmail.com"
+      link: "mailto:rudrasalokhe100@gmail.com",
+      icon: "📧"
     },
     {
       name: "X",
       answer: "https://x.com/rs2006_05",
-      link: "https://x.com/rs2006_05"
+      link: "https://x.com/rs2006_05",
+      icon: "🐦"
     },
   ];
-     
-  // Sleek black theme styling
-  const contactStyle = `
-    .contact-section {
-      padding: 80px 0;
-      background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
-      backdrop-filter: blur(20px);
-    }
-    .contact-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-    .contact-title {
-      font-size: 32px;
-      font-weight: 600;
-      color: #ffffff;
-      margin: 0 0 32px 0;
-      letter-spacing: -0.5px;
-    }
-    .contact-grid {
-      display: grid;
-      gap: 20px;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    }
-    .contact-card {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 16px;
-      padding: 24px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-      transition: all 0.3s ease;
-      backdrop-filter: blur(10px);
-    }
-    .contact-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
-      border-color: rgba(255, 255, 255, 0.2);
-      background: rgba(255, 255, 255, 0.05);
-    }
-    .contact-name {
-      font-size: 18px;
-      font-weight: 600;
-      color: #ffffff;
-      margin: 0 0 8px 0;
-      letter-spacing: -0.3px;
-    }
-    .contact-answer {
-      color: #b3b3b3;
-      margin: 0 0 16px 0;
-      font-size: 14px;
-      word-break: break-all;
-    }
-    .contact-link {
-      background: rgba(255, 255, 255, 0.05);
-      color: #e5e5e5;
-      padding: 10px 18px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 500;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      transition: all 0.3s ease;
-      display: inline-block;
-    }
-    .contact-link:hover {
-      background: rgba(255, 255, 255, 0.1);
-      color: #ffffff;
-      border-color: rgba(255, 255, 255, 0.2);
-      transform: translateY(-1px);
-    }
-  `;
- 
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
+
   return (
-    <>
-      <style>{contactStyle}</style>
-      <section id="contact" className="contact-section">
-        <div className="contact-container">
-          <h2 className="contact-title">Contact</h2>
-          <div className="contact-grid">
-            {contacts.map(cont => (
-              <div key={cont.name} className="contact-card">
-                <h3 className="contact-name">{cont.name}</h3>
-                <p className="contact-answer">{cont.answer}</p>
-                <a 
-                  href={cont.link} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="contact-link"
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+      {/* Animated background elements */}
+      <div className="absolute inset-0">
+        {/* Floating orbs */}
+        <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-gray-600/10 rounded-full blur-2xl animate-pulse"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-40 h-40 bg-gray-500/10 rounded-full blur-2xl animate-pulse delay-1000"></div>
+        
+        {/* Grid pattern */}
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.01)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:80px_80px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_110%)]"></div>
+      </div>
+
+      {/* Main content container */}
+      <div className={`relative z-10 max-w-4xl mx-auto px-6 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        
+        {/* Glassmorphism card */}
+        <div className="bg-gray-900/50 backdrop-blur-lg border border-gray-800/50 rounded-2xl p-8 shadow-xl relative overflow-hidden">
+          
+          {/* Content */}
+          <div className="relative z-10">
+            
+            {/* Title */}
+            <div className="mb-8">
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 leading-tight">
+                Contact
+              </h2>
+            </div>
+
+            {/* Contact grid */}
+            <div className="grid md:grid-cols-2 gap-6">
+              {contacts.map((contact, index) => (
+                <div 
+                  key={contact.name}
+                  className={`group bg-gray-800/40 backdrop-blur-sm border border-gray-700/50 rounded-xl p-6 shadow-lg hover:bg-gray-800/60 hover:border-gray-600/50 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+                  style={{ 
+                    transitionDelay: `${index * 150}ms` 
+                  }}
                 >
-                  Contact
-                </a>
-              </div>
-            ))}
+                  {/* Contact header */}
+                  <div className="flex items-center mb-4">
+                    <span className="text-2xl mr-3">{contact.icon}</span>
+                    <h3 className="text-xl font-semibold text-white">
+                      {contact.name}
+                    </h3>
+                  </div>
+
+                  {/* Contact info */}
+                  <p className="text-gray-300 mb-4 text-sm break-all">
+                    {contact.answer}
+                  </p>
+
+                  {/* Contact button */}
+                  <a 
+                    href={contact.link} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center px-4 py-2 bg-gray-700/60 border border-gray-600/50 rounded-lg text-gray-300 text-sm font-medium transition-all duration-300 hover:bg-gray-600/60 hover:border-gray-500/50 hover:text-white group-hover:translate-x-1"
+                  >
+                    Contact
+                    <svg 
+                      className="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" 
+                      fill="none" 
+                      stroke="currentColor" 
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                  </a>
+                </div>
+              ))}
+            </div>
+
+            {/* Additional contact info or CTA */}
+            <div className="mt-8 text-center">
+              <p className="text-gray-400 text-sm">
+                Feel free to reach out for collaborations or just to say hello!
+              </p>
+            </div>
           </div>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 };
 
