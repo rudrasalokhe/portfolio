@@ -1,18 +1,25 @@
 import React, { useState, useEffect } from 'react';
 
-const About = () => {
+const Contact = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  const contacts = [
+    {
+      name: "Email",
+      answer: "rudrasalokhe100@gmail.com",
+      link: "mailto:rudrasalokhe100@gmail.com",
+      icon: "📧"
+    },
+    {
+      name: "X",
+      answer: "https://x.com/rs2006_05",
+      link: "https://x.com/rs2006_05",
+      icon: "🐦"
+    },
+  ];
 
   useEffect(() => {
     setIsVisible(true);
-    
-    const handleMouseMove = (e) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
   return (
@@ -28,117 +35,76 @@ const About = () => {
       </div>
 
       {/* Main content container */}
-      <div className={`relative z-10 max-w-6xl mx-auto px-6 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+      <div className={`relative z-10 max-w-4xl mx-auto px-6 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         
         {/* Glassmorphism card */}
-        <div className="bg-gray-900/50 backdrop-blur-lg border border-gray-800/50 rounded-2xl p-8 shadow-xl relative overflow-hidden group hover:bg-gray-900/60 transition-all duration-300">
+        <div className="bg-gray-900/50 backdrop-blur-lg border border-gray-800/50 rounded-2xl p-8 shadow-xl relative overflow-hidden">
           
           {/* Content */}
           <div className="relative z-10">
             
-            {/* Animated title */}
+            {/* Title */}
             <div className="mb-8">
               <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 leading-tight">
-                About Me
+                Contact
               </h2>
             </div>
 
-            {/* Content grid */}
-            <div className="grid md:grid-cols-2 gap-12 items-center">
-              
-              {/* Text content */}
-              <div className="space-y-6">
-                <p className="text-lg text-gray-300 leading-relaxed">
-                  I'm a Computer Engineering student at Vidyalankar Polytechnic with a passion for building robust backend systems and modern web applications. Currently focused on becoming a Full Stack Engineer with expertise in both frontend and backend technologies. I enjoy solving complex problems and creating efficient, scalable solutions.
-                </p>
-
-                {/* Skill tags */}
-                <div className="flex flex-wrap gap-3 mt-8">
-                  {['React', 'Node.js', 'JavaScript', 'Full Stack', 'Backend'].map((skill, index) => (
-                    <span 
-                      key={skill}
-                      className="px-3 py-1 bg-gray-800/60 border border-gray-700/50 rounded-lg text-sm text-gray-300 backdrop-blur-sm hover:bg-gray-700/60 transition-all duration-300 cursor-pointer"
-                      style={{ animationDelay: `${index * 100}ms` }}
-                    >
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-
-                {/* CTA Button */}
-                <button className="group relative mt-8 px-6 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white font-medium overflow-hidden transition-all duration-300 hover:bg-gray-700 hover:border-gray-600">
-                  <span className="relative z-10">View My Work</span>
-                </button>
-              </div>
-
-              {/* Visual element */}
-              <div className="relative">
-                <div className="relative w-full h-80 rounded-2xl overflow-hidden">
-                  
-                  {/* Animated code blocks */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-sm rounded-2xl border border-white/10 p-6">
-                    <div className="space-y-3">
-                      <div className="flex items-center space-x-2 mb-6">
-                        <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                        <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                        <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                      </div>
-                      
-                      {/* Animated code lines */}
-                      {[
-                        { text: "const passion = 'Full Stack Development';", delay: 0 },
-                        { text: "const skills = ['React', 'Node.js', 'MongoDB'];", delay: 200 },
-                        { text: "const goal = 'Build Amazing Things';", delay: 400 },
-                        { text: "// Currently studying at Vidyalankar", delay: 600 },
-                        { text: "function createSolutions() {", delay: 800 },
-                        { text: "  return innovation + dedication;", delay: 1000 },
-                        { text: "}", delay: 1200 }
-                      ].map((line, index) => (
-                        <div 
-                          key={index}
-                          className={`text-sm opacity-0 animate-pulse font-mono ${
-                            line.text.includes('//') ? 'text-gray-500' : 
-                            line.text.includes('const') || line.text.includes('function') ? 'text-purple-400' :
-                            line.text.includes("'") ? 'text-green-400' : 'text-gray-300'
-                          }`}
-                          style={{ 
-                            animation: `fadeInUp 0.5s ease-out ${line.delay}ms forwards`,
-                          }}
-                        >
-                          {line.text}
-                        </div>
-                      ))}
-                    </div>
+            {/* Contact grid */}
+            <div className="grid md:grid-cols-2 gap-6">
+              {contacts.map((contact, index) => (
+                <div 
+                  key={contact.name}
+                  className={`group bg-gray-800/40 backdrop-blur-sm border border-gray-700/50 rounded-xl p-6 shadow-lg hover:bg-gray-800/60 hover:border-gray-600/50 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+                  style={{ 
+                    transitionDelay: `${index * 150}ms` 
+                  }}
+                >
+                  {/* Contact header */}
+                  <div className="flex items-center mb-4">
+                    <span className="text-2xl mr-3">{contact.icon}</span>
+                    <h3 className="text-xl font-semibold text-white">
+                      {contact.name}
+                    </h3>
                   </div>
-                  
-                  {/* Floating elements */}
-                  <div className="absolute -top-4 -right-4 w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full blur-xl opacity-70 animate-pulse"></div>
-                  <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-full blur-xl opacity-70 animate-pulse delay-1000"></div>
+
+                  {/* Contact info */}
+                  <p className="text-gray-300 mb-4 text-sm break-all">
+                    {contact.answer}
+                  </p>
+
+                  {/* Contact button */}
+                  <a 
+                    href={contact.link} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center px-4 py-2 bg-gray-700/60 border border-gray-600/50 rounded-lg text-gray-300 text-sm font-medium transition-all duration-300 hover:bg-gray-600/60 hover:border-gray-500/50 hover:text-white group-hover:translate-x-1"
+                  >
+                    Contact
+                    <svg 
+                      className="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" 
+                      fill="none" 
+                      stroke="currentColor" 
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                  </a>
                 </div>
-              </div>
+              ))}
+            </div>
+
+            {/* Additional contact info or CTA */}
+            <div className="mt-8 text-center">
+              <p className="text-gray-400 text-sm">
+                Feel free to reach out for collaborations or just to say hello!
+              </p>
             </div>
           </div>
         </div>
       </div>
-
-      <style jsx>{`
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        
-        .bg-gradient-radial {
-          background: radial-gradient(circle, var(--tw-gradient-stops));
-        }
-      `}</style>
     </section>
   );
 };
 
-export default About;
+export default Contact;
