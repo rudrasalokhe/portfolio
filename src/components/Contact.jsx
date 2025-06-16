@@ -23,53 +23,59 @@ const Contact = () => {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+    <section style={styles.section}>
       {/* Animated background elements */}
-      <div className="absolute inset-0">
+      <div style={styles.backgroundContainer}>
         {/* Floating orbs */}
-        <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-gray-600/10 rounded-full blur-2xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-40 h-40 bg-gray-500/10 rounded-full blur-2xl animate-pulse delay-1000"></div>
+        <div style={styles.orb1}></div>
+        <div style={styles.orb2}></div>
         
         {/* Grid pattern */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.01)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:80px_80px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_110%)]"></div>
+        <div style={styles.gridPattern}></div>
       </div>
 
       {/* Main content container */}
-      <div className={`relative z-10 max-w-4xl mx-auto px-6 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+      <div style={{
+        ...styles.mainContainer,
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? 'translateY(0)' : 'translateY(40px)'
+      }}>
         
         {/* Glassmorphism card */}
-        <div className="bg-gray-900/50 backdrop-blur-lg border border-gray-800/50 rounded-2xl p-8 shadow-xl relative overflow-hidden">
+        <div style={styles.card}>
           
           {/* Content */}
-          <div className="relative z-10">
+          <div style={styles.cardContent}>
             
             {/* Title */}
-            <div className="mb-8">
-              <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 leading-tight">
+            <div style={styles.titleContainer}>
+              <h2 style={styles.title}>
                 Contact
               </h2>
             </div>
 
             {/* Contact grid */}
-            <div className="grid md:grid-cols-2 gap-6">
+            <div style={styles.contactGrid}>
               {contacts.map((contact, index) => (
                 <div 
                   key={contact.name}
-                  className={`group bg-gray-800/40 backdrop-blur-sm border border-gray-700/50 rounded-xl p-6 shadow-lg hover:bg-gray-800/60 hover:border-gray-600/50 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
-                  style={{ 
-                    transitionDelay: `${index * 150}ms` 
+                  style={{
+                    ...styles.contactCard,
+                    opacity: isVisible ? 1 : 0,
+                    transform: isVisible ? 'translateY(0)' : 'translateY(16px)',
+                    transitionDelay: `${index * 150}ms`
                   }}
                 >
                   {/* Contact header */}
-                  <div className="flex items-center mb-4">
-                    <span className="text-2xl mr-3">{contact.icon}</span>
-                    <h3 className="text-xl font-semibold text-white">
+                  <div style={styles.contactHeader}>
+                    <span style={styles.contactIcon}>{contact.icon}</span>
+                    <h3 style={styles.contactName}>
                       {contact.name}
                     </h3>
                   </div>
 
                   {/* Contact info */}
-                  <p className="text-gray-300 mb-4 text-sm break-all">
+                  <p style={styles.contactInfo}>
                     {contact.answer}
                   </p>
 
@@ -78,11 +84,11 @@ const Contact = () => {
                     href={contact.link} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="inline-flex items-center px-4 py-2 bg-gray-700/60 border border-gray-600/50 rounded-lg text-gray-300 text-sm font-medium transition-all duration-300 hover:bg-gray-600/60 hover:border-gray-500/50 hover:text-white group-hover:translate-x-1"
+                    style={styles.contactButton}
                   >
                     Contact
                     <svg 
-                      className="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" 
+                      style={styles.arrowIcon}
                       fill="none" 
                       stroke="currentColor" 
                       viewBox="0 0 24 24"
@@ -95,16 +101,217 @@ const Contact = () => {
             </div>
 
             {/* Additional contact info or CTA */}
-            <div className="mt-8 text-center">
-              <p className="text-gray-400 text-sm">
+            <div style={styles.footerText}>
+              <p style={styles.footerParagraph}>
                 Feel free to reach out for collaborations or just to say hello!
               </p>
             </div>
           </div>
         </div>
       </div>
+
+      <style jsx>{`
+        @keyframes pulse {
+          0%, 100% {
+            opacity: 1;
+          }
+          50% {
+            opacity: 0.5;
+          }
+        }
+        
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}</style>
     </section>
   );
 };
+
+const styles = {
+  section: {
+    position: 'relative',
+    minHeight: '100vh',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    overflow: 'hidden',
+    background: 'linear-gradient(135deg, #111827 0%, #1f2937 50%, #111827 100%)',
+  },
+  backgroundContainer: {
+    position: 'absolute',
+    inset: '0',
+  },
+  orb1: {
+    position: 'absolute',
+    top: '25%',
+    left: '25%',
+    width: '128px',
+    height: '128px',
+    background: 'rgba(75, 85, 99, 0.1)',
+    borderRadius: '50%',
+    filter: 'blur(32px)',
+    animation: 'pulse 2s infinite',
+  },
+  orb2: {
+    position: 'absolute',
+    bottom: '25%',
+    right: '25%',
+    width: '160px',
+    height: '160px',
+    background: 'rgba(107, 114, 128, 0.1)',
+    borderRadius: '50%',
+    filter: 'blur(32px)',
+    animation: 'pulse 2s infinite 1s',
+  },
+  gridPattern: {
+    position: 'absolute',
+    inset: '0',
+    backgroundImage: `
+      linear-gradient(rgba(255,255,255,0.01) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.01) 1px, transparent 1px)
+    `,
+    backgroundSize: '80px 80px',
+    maskImage: 'radial-gradient(ellipse 60% 50% at 50% 0%, #000 70%, transparent 110%)',
+  },
+  mainContainer: {
+    position: 'relative',
+    zIndex: 10,
+    maxWidth: '896px',
+    margin: '0 auto',
+    padding: '0 24px',
+    transition: 'all 1s ease-out',
+  },
+  card: {
+    background: 'rgba(17, 24, 39, 0.5)',
+    backdropFilter: 'blur(16px)',
+    border: '1px solid rgba(31, 41, 55, 0.5)',
+    borderRadius: '16px',
+    padding: '32px',
+    boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+    position: 'relative',
+    overflow: 'hidden',
+  },
+  cardContent: {
+    position: 'relative',
+    zIndex: 10,
+  },
+  titleContainer: {
+    marginBottom: '32px',
+  },
+  title: {
+    fontSize: '48px',
+    fontWeight: 'bold',
+    color: 'white',
+    marginBottom: '16px',
+    lineHeight: '1.2',
+    margin: 0,
+    '@media (max-width: 768px)': {
+      fontSize: '36px',
+    },
+  },
+  contactGrid: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+    gap: '24px',
+  },
+  contactCard: {
+    background: 'rgba(31, 41, 55, 0.4)',
+    backdropFilter: 'blur(4px)',
+    border: '1px solid rgba(55, 65, 81, 0.5)',
+    borderRadius: '12px',
+    padding: '24px',
+    boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
+    transition: 'all 0.3s ease',
+    cursor: 'pointer',
+  },
+  contactHeader: {
+    display: 'flex',
+    alignItems: 'center',
+    marginBottom: '16px',
+  },
+  contactIcon: {
+    fontSize: '24px',
+    marginRight: '12px',
+  },
+  contactName: {
+    fontSize: '20px',
+    fontWeight: '600',
+    color: 'white',
+    margin: 0,
+  },
+  contactInfo: {
+    color: '#d1d5db',
+    marginBottom: '16px',
+    fontSize: '14px',
+    wordBreak: 'break-all',
+    margin: '0 0 16px 0',
+  },
+  contactButton: {
+    display: 'inline-flex',
+    alignItems: 'center',
+    padding: '8px 16px',
+    background: 'rgba(55, 65, 81, 0.6)',
+    border: '1px solid rgba(75, 85, 99, 0.5)',
+    borderRadius: '8px',
+    color: '#d1d5db',
+    fontSize: '14px',
+    fontWeight: '500',
+    textDecoration: 'none',
+    transition: 'all 0.3s ease',
+  },
+  arrowIcon: {
+    marginLeft: '8px',
+    width: '16px',
+    height: '16px',
+    transition: 'transform 0.3s ease',
+  },
+  footerText: {
+    marginTop: '32px',
+    textAlign: 'center',
+  },
+  footerParagraph: {
+    color: '#9ca3af',
+    fontSize: '14px',
+    margin: 0,
+  },
+};
+
+// Add hover effects using CSS-in-JS approach
+const addHoverStyles = () => {
+  const style = document.createElement('style');
+  style.textContent = `
+    [data-contact-card]:hover {
+      background: rgba(31, 41, 55, 0.6) !important;
+      border-color: rgba(75, 85, 99, 0.5) !important;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1) !important;
+      transform: translateY(-4px) !important;
+    }
+    
+    [data-contact-button]:hover {
+      background: rgba(75, 85, 99, 0.6) !important;
+      border-color: rgba(107, 114, 128, 0.5) !important;
+      color: white !important;
+      transform: translateX(4px) !important;
+    }
+    
+    [data-contact-button]:hover [data-arrow-icon] {
+      transform: translateX(4px) !important;
+    }
+  `;
+  document.head.appendChild(style);
+};
+
+// Call this when component mounts
+if (typeof document !== 'undefined') {
+  addHoverStyles();
+}
 
 export default Contact;
