@@ -24,45 +24,54 @@ const Header = () => {
   };
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      scrolled 
-        ? 'bg-gray-900/80 backdrop-blur-lg border-b border-gray-800/50 shadow-lg' 
-        : 'bg-gray-900/60 backdrop-blur-md border-b border-gray-800/30'
-    }`}>
-      <div className="max-w-6xl mx-auto px-6 py-4">
-        <div className="flex items-center justify-between">
+    <header style={{
+      ...styles.header,
+      background: scrolled 
+        ? 'rgba(17, 24, 39, 0.8)' 
+        : 'rgba(17, 24, 39, 0.6)',
+      backdropFilter: scrolled ? 'blur(16px)' : 'blur(8px)',
+      borderBottom: scrolled 
+        ? '1px solid rgba(31, 41, 55, 0.5)' 
+        : '1px solid rgba(31, 41, 55, 0.3)',
+      boxShadow: scrolled 
+        ? '0 10px 15px -3px rgba(0, 0, 0, 0.1)' 
+        : 'none',
+    }}>
+      <div style={styles.container}>
+        <div style={styles.navWrapper}>
           
           {/* Logo Section with Profile Photo */}
-          <div className="flex items-center space-x-3 group">
-            <div className="relative">
+          <div style={styles.logoSection}>
+            <div style={styles.profileImageWrapper}>
               <img 
                 src="/api/placeholder/40/40" 
                 alt="Rudra Salokhe" 
-                className="w-10 h-10 rounded-full object-cover border-2 border-gray-700/50 transition-all duration-300 group-hover:border-gray-600/70 group-hover:scale-105 shadow-lg"
+                style={styles.profileImage}
               />
-              <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-transparent to-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div style={styles.profileOverlay}></div>
             </div>
-            <h1 className="text-xl font-semibold text-white transition-colors duration-300 group-hover:text-gray-200">
+            <h1 style={styles.logoText}>
               Rudra Salokhe
             </h1>
           </div>
           
           {/* Navigation */}
-          <nav className="flex items-center space-x-1">
+          <nav style={styles.navigation}>
             {navItems.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
                 onClick={() => handleNavClick(item.name)}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 relative overflow-hidden group ${
-                  activeSection === item.name.toLowerCase()
-                    ? 'text-white bg-gray-800/60 shadow-md'
-                    : 'text-gray-400 hover:text-white hover:bg-gray-800/40'
-                }`}
+                style={{
+                  ...styles.navItem,
+                  ...(activeSection === item.name.toLowerCase() 
+                    ? styles.navItemActive 
+                    : styles.navItemInactive)
+                }}
               >
-                <span className="relative z-10">{item.name}</span>
+                <span style={styles.navItemText}>{item.name}</span>
                 {activeSection === item.name.toLowerCase() && (
-                  <div className="absolute inset-0 bg-gradient-to-r from-gray-700/20 to-gray-600/20 rounded-lg"></div>
+                  <div style={styles.activeIndicator}></div>
                 )}
               </a>
             ))}
@@ -70,12 +79,12 @@ const Header = () => {
             {/* Contact Button */}
             <button 
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-              className="ml-4 px-5 py-2 bg-gray-800/60 border border-gray-700/50 rounded-lg text-white text-sm font-medium transition-all duration-300 hover:bg-gray-700/60 hover:border-gray-600/50 hover:shadow-lg hover:-translate-y-0.5 group"
+              style={styles.contactButton}
             >
-              <span className="flex items-center space-x-2">
+              <span style={styles.contactButtonContent}>
                 <span>Contact</span>
                 <svg 
-                  className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5" 
+                  style={styles.contactIcon}
                   fill="none" 
                   stroke="currentColor" 
                   viewBox="0 0 24 24"
@@ -89,9 +98,201 @@ const Header = () => {
       </div>
       
       {/* Bottom border gradient */}
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gray-700/50 to-transparent"></div>
+      <div style={styles.bottomBorder}></div>
+
+      <style jsx>{`
+        .logo-group:hover .profile-image {
+          border-color: rgba(75, 85, 99, 0.7);
+          transform: scale(1.05);
+        }
+        
+        .logo-group:hover .profile-overlay {
+          opacity: 1;
+        }
+        
+        .logo-group:hover .logo-text {
+          color: #e5e7eb;
+        }
+        
+        .nav-item-inactive:hover {
+          color: white !important;
+          background: rgba(31, 41, 55, 0.4) !important;
+        }
+        
+        .contact-button:hover {
+          background: rgba(55, 65, 81, 0.6) !important;
+          border-color: rgba(75, 85, 99, 0.5) !important;
+          box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1) !important;
+          transform: translateY(-2px) !important;
+        }
+        
+        .contact-button:hover .contact-icon {
+          transform: translateX(2px) !important;
+        }
+      `}</style>
     </header>
   );
 };
+
+const styles = {
+  header: {
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    right: 0,
+    zIndex: 50,
+    transition: 'all 0.3s ease',
+  },
+  container: {
+    maxWidth: '1152px',
+    margin: '0 auto',
+    padding: '16px 24px',
+  },
+  navWrapper: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  logoSection: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '12px',
+    cursor: 'pointer',
+  },
+  profileImageWrapper: {
+    position: 'relative',
+  },
+  profileImage: {
+    width: '40px',
+    height: '40px',
+    borderRadius: '50%',
+    objectFit: 'cover',
+    border: '2px solid rgba(55, 65, 81, 0.5)',
+    transition: 'all 0.3s ease',
+    boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
+  },
+  profileOverlay: {
+    position: 'absolute',
+    inset: 0,
+    borderRadius: '50%',
+    background: 'linear-gradient(135deg, transparent 0%, rgba(255, 255, 255, 0.1) 100%)',
+    opacity: 0,
+    transition: 'opacity 0.3s ease',
+  },
+  logoText: {
+    fontSize: '20px',
+    fontWeight: '600',
+    color: 'white',
+    transition: 'color 0.3s ease',
+    margin: 0,
+  },
+  navigation: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '4px',
+  },
+  navItem: {
+    padding: '8px 16px',
+    borderRadius: '8px',
+    fontSize: '14px',
+    fontWeight: '500',
+    transition: 'all 0.3s ease',
+    position: 'relative',
+    overflow: 'hidden',
+    textDecoration: 'none',
+    cursor: 'pointer',
+  },
+  navItemActive: {
+    color: 'white',
+    background: 'rgba(31, 41, 55, 0.6)',
+    boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
+  },
+  navItemInactive: {
+    color: '#9ca3af',
+  },
+  navItemText: {
+    position: 'relative',
+    zIndex: 10,
+  },
+  activeIndicator: {
+    position: 'absolute',
+    inset: 0,
+    background: 'linear-gradient(90deg, rgba(55, 65, 81, 0.2) 0%, rgba(75, 85, 99, 0.2) 100%)',
+    borderRadius: '8px',
+  },
+  contactButton: {
+    marginLeft: '16px',
+    padding: '8px 20px',
+    background: 'rgba(31, 41, 55, 0.6)',
+    border: '1px solid rgba(55, 65, 81, 0.5)',
+    borderRadius: '8px',
+    color: 'white',
+    fontSize: '14px',
+    fontWeight: '500',
+    transition: 'all 0.3s ease',
+    cursor: 'pointer',
+  },
+  contactButtonContent: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '8px',
+  },
+  contactIcon: {
+    width: '16px',
+    height: '16px',
+    transition: 'transform 0.3s ease',
+  },
+  bottomBorder: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: '1px',
+    background: 'linear-gradient(90deg, transparent 0%, rgba(55, 65, 81, 0.5) 50%, transparent 100%)',
+  },
+};
+
+// Add hover effects using CSS classes approach
+const addHoverClasses = () => {
+  if (typeof document === 'undefined') return;
+  
+  const style = document.createElement('style');
+  style.textContent = `
+    .logo-group:hover .profile-image {
+      border-color: rgba(75, 85, 99, 0.7) !important;
+      transform: scale(1.05) !important;
+    }
+    
+    .logo-group:hover .profile-overlay {
+      opacity: 1 !important;
+    }
+    
+    .logo-group:hover .logo-text {
+      color: #e5e7eb !important;
+    }
+    
+    .nav-item-inactive:hover {
+      color: white !important;
+      background: rgba(31, 41, 55, 0.4) !important;
+    }
+    
+    .contact-button:hover {
+      background: rgba(55, 65, 81, 0.6) !important;
+      border-color: rgba(75, 85, 99, 0.5) !important;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1) !important;
+      transform: translateY(-2px) !important;
+    }
+    
+    .contact-button:hover .contact-icon {
+      transform: translateX(2px) !important;
+    }
+  `;
+  document.head.appendChild(style);
+};
+
+// Call this when component mounts
+if (typeof window !== 'undefined') {
+  addHoverClasses();
+}
 
 export default Header;
