@@ -299,11 +299,6 @@ const Skills = () => {
                   </div>
                 ))}
               </div>
-
-              {/* Bottom text */}
-              <div style={styles.bottomText}>
-                Always learning and expanding my toolkit
-              </div>
             </div>
           </div>
         </div>
