@@ -16,49 +16,55 @@ const About = () => {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+    <section style={styles.section}>
       {/* Animated background elements */}
-      <div className="absolute inset-0">
+      <div style={styles.backgroundContainer}>
         {/* Floating orbs */}
-        <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-gray-600/10 rounded-full blur-2xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-40 h-40 bg-gray-500/10 rounded-full blur-2xl animate-pulse delay-1000"></div>
+        <div style={styles.orb1}></div>
+        <div style={styles.orb2}></div>
         
         {/* Grid pattern */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.01)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:80px_80px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_110%)]"></div>
+        <div style={styles.gridPattern}></div>
       </div>
 
       {/* Main content container */}
-      <div className={`relative z-10 max-w-6xl mx-auto px-6 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+      <div style={{
+        ...styles.mainContainer,
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? 'translateY(0)' : 'translateY(40px)'
+      }}>
         
         {/* Glassmorphism card */}
-        <div className="bg-gray-900/50 backdrop-blur-lg border border-gray-800/50 rounded-2xl p-8 shadow-xl relative overflow-hidden group hover:bg-gray-900/60 transition-all duration-300">
+        <div style={styles.card}>
           
           {/* Content */}
-          <div className="relative z-10">
+          <div style={styles.cardContent}>
             
             {/* Animated title */}
-            <div className="mb-8">
-              <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 leading-tight">
+            <div style={styles.titleContainer}>
+              <h2 style={styles.title}>
                 About Me
               </h2>
             </div>
 
             {/* Content grid */}
-            <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div style={styles.contentGrid}>
               
               {/* Text content */}
-              <div className="space-y-6">
-                <p className="text-lg text-gray-300 leading-relaxed">
+              <div style={styles.textContent}>
+                <p style={styles.description}>
                   I'm a Computer Engineering student at Vidyalankar Polytechnic with a passion for building robust backend systems and modern web applications. Currently focused on becoming a Full Stack Engineer with expertise in both frontend and backend technologies. I enjoy solving complex problems and creating efficient, scalable solutions.
                 </p>
 
                 {/* Skill tags */}
-                <div className="flex flex-wrap gap-3 mt-8">
+                <div style={styles.skillsContainer}>
                   {['React', 'Node.js', 'JavaScript', 'Full Stack', 'Backend'].map((skill, index) => (
                     <span 
                       key={skill}
-                      className="px-3 py-1 bg-gray-800/60 border border-gray-700/50 rounded-lg text-sm text-gray-300 backdrop-blur-sm hover:bg-gray-700/60 transition-all duration-300 cursor-pointer"
-                      style={{ animationDelay: `${index * 100}ms` }}
+                      style={{
+                        ...styles.skillTag,
+                        animationDelay: `${index * 100}ms`
+                      }}
                     >
                       {skill}
                     </span>
@@ -66,22 +72,22 @@ const About = () => {
                 </div>
 
                 {/* CTA Button */}
-                <button className="group relative mt-8 px-6 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white font-medium overflow-hidden transition-all duration-300 hover:bg-gray-700 hover:border-gray-600">
-                  <span className="relative z-10">View My Work</span>
+                <button style={styles.ctaButton}>
+                  <span style={styles.buttonText}>View My Work</span>
                 </button>
               </div>
 
               {/* Visual element */}
-              <div className="relative">
-                <div className="relative w-full h-80 rounded-2xl overflow-hidden">
+              <div style={styles.visualContainer}>
+                <div style={styles.codeContainer}>
                   
                   {/* Animated code blocks */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-sm rounded-2xl border border-white/10 p-6">
-                    <div className="space-y-3">
-                      <div className="flex items-center space-x-2 mb-6">
-                        <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                        <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                        <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                  <div style={styles.codeWindow}>
+                    <div style={styles.codeContent}>
+                      <div style={styles.windowControls}>
+                        <div style={styles.redDot}></div>
+                        <div style={styles.yellowDot}></div>
+                        <div style={styles.greenDot}></div>
                       </div>
                       
                       {/* Animated code lines */}
@@ -96,13 +102,12 @@ const About = () => {
                       ].map((line, index) => (
                         <div 
                           key={index}
-                          className={`text-sm opacity-0 animate-pulse font-mono ${
-                            line.text.includes('//') ? 'text-gray-500' : 
-                            line.text.includes('const') || line.text.includes('function') ? 'text-purple-400' :
-                            line.text.includes("'") ? 'text-green-400' : 'text-gray-300'
-                          }`}
-                          style={{ 
-                            animation: `fadeInUp 0.5s ease-out ${line.delay}ms forwards`,
+                          style={{
+                            ...styles.codeLine,
+                            ...(line.text.includes('//') ? styles.comment : 
+                                line.text.includes('const') || line.text.includes('function') ? styles.keyword :
+                                line.text.includes("'") ? styles.string : styles.default),
+                            animationDelay: `${line.delay}ms`
                           }}
                         >
                           {line.text}
@@ -112,8 +117,8 @@ const About = () => {
                   </div>
                   
                   {/* Floating elements */}
-                  <div className="absolute -top-4 -right-4 w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full blur-xl opacity-70 animate-pulse"></div>
-                  <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-full blur-xl opacity-70 animate-pulse delay-1000"></div>
+                  <div style={styles.floatingElement1}></div>
+                  <div style={styles.floatingElement2}></div>
                 </div>
               </div>
             </div>
@@ -133,12 +138,251 @@ const About = () => {
           }
         }
         
-        .bg-gradient-radial {
-          background: radial-gradient(circle, var(--tw-gradient-stops));
+        @keyframes pulse {
+          0%, 100% {
+            opacity: 1;
+          }
+          50% {
+            opacity: 0.5;
+          }
+        }
+        
+        @keyframes float {
+          0%, 100% {
+            transform: translateY(0px);
+          }
+          50% {
+            transform: translateY(-20px);
+          }
         }
       `}</style>
     </section>
   );
+};
+
+const styles = {
+  section: {
+    position: 'relative',
+    minHeight: '100vh',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    overflow: 'hidden',
+    background: 'linear-gradient(135deg, #111827 0%, #1f2937 50%, #111827 100%)',
+  },
+  backgroundContainer: {
+    position: 'absolute',
+    inset: '0',
+  },
+  orb1: {
+    position: 'absolute',
+    top: '25%',
+    left: '25%',
+    width: '128px',
+    height: '128px',
+    background: 'rgba(75, 85, 99, 0.1)',
+    borderRadius: '50%',
+    filter: 'blur(32px)',
+    animation: 'pulse 2s infinite',
+  },
+  orb2: {
+    position: 'absolute',
+    bottom: '25%',
+    right: '25%',
+    width: '160px',
+    height: '160px',
+    background: 'rgba(107, 114, 128, 0.1)',
+    borderRadius: '50%',
+    filter: 'blur(32px)',
+    animation: 'pulse 2s infinite 1s',
+  },
+  gridPattern: {
+    position: 'absolute',
+    inset: '0',
+    backgroundImage: `
+      linear-gradient(rgba(255,255,255,0.01) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.01) 1px, transparent 1px)
+    `,
+    backgroundSize: '80px 80px',
+    maskImage: 'radial-gradient(ellipse 60% 50% at 50% 0%, #000 70%, transparent 110%)',
+  },
+  mainContainer: {
+    position: 'relative',
+    zIndex: 10,
+    maxWidth: '1152px',
+    margin: '0 auto',
+    padding: '0 24px',
+    transition: 'all 1s ease-out',
+  },
+  card: {
+    background: 'rgba(17, 24, 39, 0.5)',
+    backdropFilter: 'blur(16px)',
+    border: '1px solid rgba(31, 41, 55, 0.5)',
+    borderRadius: '16px',
+    padding: '32px',
+    boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+    position: 'relative',
+    overflow: 'hidden',
+    transition: 'all 0.3s ease',
+  },
+  cardContent: {
+    position: 'relative',
+    zIndex: 10,
+  },
+  titleContainer: {
+    marginBottom: '32px',
+  },
+  title: {
+    fontSize: '48px',
+    fontWeight: 'bold',
+    color: 'white',
+    marginBottom: '16px',
+    lineHeight: '1.2',
+    margin: 0,
+  },
+  contentGrid: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+    gap: '48px',
+    alignItems: 'center',
+  },
+  textContent: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '24px',
+  },
+  description: {
+    fontSize: '18px',
+    color: '#d1d5db',
+    lineHeight: '1.75',
+    margin: 0,
+  },
+  skillsContainer: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    gap: '12px',
+    marginTop: '32px',
+  },
+  skillTag: {
+    padding: '4px 12px',
+    background: 'rgba(31, 41, 55, 0.6)',
+    border: '1px solid rgba(55, 65, 81, 0.5)',
+    borderRadius: '8px',
+    fontSize: '14px',
+    color: '#d1d5db',
+    backdropFilter: 'blur(4px)',
+    transition: 'all 0.3s ease',
+    cursor: 'pointer',
+    animation: 'fadeInUp 0.5s ease-out forwards',
+    opacity: 0,
+  },
+  ctaButton: {
+    position: 'relative',
+    marginTop: '32px',
+    padding: '12px 24px',
+    background: '#374151',
+    border: '1px solid #4b5563',
+    borderRadius: '8px',
+    color: 'white',
+    fontWeight: '500',
+    overflow: 'hidden',
+    transition: 'all 0.3s ease',
+    cursor: 'pointer',
+  },
+  buttonText: {
+    position: 'relative',
+    zIndex: 10,
+  },
+  visualContainer: {
+    position: 'relative',
+  },
+  codeContainer: {
+    position: 'relative',
+    width: '100%',
+    height: '320px',
+    borderRadius: '16px',
+    overflow: 'hidden',
+  },
+  codeWindow: {
+    position: 'absolute',
+    inset: '0',
+    background: 'linear-gradient(135deg, rgba(51, 65, 85, 0.5) 0%, rgba(30, 41, 59, 0.5) 100%)',
+    backdropFilter: 'blur(4px)',
+    borderRadius: '16px',
+    border: '1px solid rgba(255, 255, 255, 0.1)',
+    padding: '24px',
+  },
+  codeContent: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '12px',
+  },
+  windowControls: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '8px',
+    marginBottom: '24px',
+  },
+  redDot: {
+    width: '12px',
+    height: '12px',
+    background: '#ef4444',
+    borderRadius: '50%',
+  },
+  yellowDot: {
+    width: '12px',
+    height: '12px',
+    background: '#eab308',
+    borderRadius: '50%',
+  },
+  greenDot: {
+    width: '12px',
+    height: '12px',
+    background: '#22c55e',
+    borderRadius: '50%',
+  },
+  codeLine: {
+    fontSize: '14px',
+    fontFamily: 'monospace',
+    opacity: 0,
+    animation: 'fadeInUp 0.5s ease-out forwards',
+  },
+  comment: {
+    color: '#6b7280',
+  },
+  keyword: {
+    color: '#a78bfa',
+  },
+  string: {
+    color: '#34d399',
+  },
+  default: {
+    color: '#d1d5db',
+  },
+  floatingElement1: {
+    position: 'absolute',
+    top: '-16px',
+    right: '-16px',
+    width: '80px',
+    height: '80px',
+    background: 'linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%)',
+    borderRadius: '50%',
+    filter: 'blur(24px)',
+    opacity: 0.7,
+    animation: 'pulse 2s infinite',
+  },
+  floatingElement2: {
+    position: 'absolute',
+    bottom: '-16px',
+    left: '-16px',
+    width: '64px',
+    height: '64px',
+    background: 'linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%)',
+    borderRadius: '50%',
+    filter: 'blur(24px)',
+    opacity: 0.7,
+    animation: 'pulse 2s infinite 1s',
+  },
 };
 
 export default About;
